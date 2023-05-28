@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)https://webchatbot.aunoa.ai/?411-ed3ed44e-ecd5-11ec-9b96-42010a840014;%25;;;;;;&flush=false -->
+<html ng-app="bots" class="ng-scope" data-lt-installed="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style type="text/css">.uib-time input{width:50px;}</style><style type="text/css">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-datepicker-popup.dropdown-menu{display:block;}.uib-button-bar{padding:10px 9px 2px;}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <meta name="robots" content="noindex"> <!-- Page title set in pageTitle directive --> <title page-title=""></title> <!--<base href="/">--><base href="."> <!-- Google Open Sans --> <link href="./css" rel="stylesheet" type="text/css"> <link rel="stylesheet" href="./vendor.6ff3e91b.css"> <link rel="stylesheet" href="./style.045c4b84.css"> <!-- Global site tag (gtag.js) - Google Analytics --> <script type="text/javascript" async="" src="./analytics.js.descarga"></script><script async="" src="./js"></script> <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-148754737-3');</script>  <!-- ControllerAs syntax --> <!-- Main controller with serveral data used in Inspinia theme on diferent view --> </head><body class=""> <!-- Main view  --> <!-- uiView: --><div ui-view="" class="ng-scope"><div class="floating-chat ng-scope powered enter" id="chatwindow" style="background: rgb(211, 57, 113); display: flex;"> <i class="fa fa-comments" id="openbtn" aria-hidden="true"><!-- ngIf: pendingMinichat>0 --></i> <div class="chat" style="display: none;"> <div class="header"> <span class="title ng-binding" ng-bind-html="bots.title | trustedhtml">Asistente virtual de <b>Druni</b></span> <button class="plugin-button" style="position: absolute"> <i class="fa fa-window-minimize" aria-hidden="true"></i> </button> </div> <div class="small-chat-box ng-small-chat messagdes" id="minichat" ng-mousedown="mouseDown($event)"> <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100px;"><div class="content" chat-slim-scroll="" id="testchat" style="overflow: hidden; width: auto; height: 100px;"> <!-- ngRepeat: msg in testChatMessages track by $index --> <!-- ngIf: bots.agentWriting --> <!-- ngIf: uploadProgress>0 --> </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 20px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div> <p id="connecting" class="ng-binding">Connecting...</p> <div class="form-chat" id="textfooter"> <div class="input-group input-group-sm"> <!--
+                    <span class="input-group-addon" style="border: 0;padding:0;">
+                        <a href="https://aunoa.ai" target="_blank"><img src="https://storage.googleapis.com/cdn.aunoa.ai/img/aunoa_logo.png" style="width: 50px;"></a>
+                    </span>
+                    --> <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="texttochat" autocomplete="off" ng-model="bots.testmsg" emoji-pickeri="" ng-keyup="$event.keyCode == 13 ? bots.sendTestMsg() : null;" ng-disabled="!bots.connected" placeholder="Send a message..." ng-change="bots.sendWriting()" disabled="disabled"> <span class="input-group-btn" style="padding-left: 1px"> <input type="file" nv-file-select="" uploader="uploader" id="fileDialog" style="display: none"> <!-- ngIf: bots.screenshare && msg.isInCcare --> <!-- ngIf: bots.webcam && msg.isInCcare --> <!-- ngIf: bots.showattach --><button class="btn btn-default sendbtn ng-scope" type="button" ng-if="bots.showattach" ng-click="launchFilePicker()" title="Send file" alt="Send file"> <i class="fa fa-paperclip"></i> </button><!-- end ngIf: bots.showattach --> <button class="btn btn-default sendbtn" type="button" ng-click="bots.sendTestMsg()" ng-disabled="!bots.connected || bots.testmsg.trim().length==0" disabled="disabled"> <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 334.5 334.5" class="sendbtn__ico" xml:space="preserve"> <path d="M332.797,13.699c-1.489-1.306-3.608-1.609-5.404-0.776L2.893,163.695c-1.747,0.812-2.872,2.555-2.893,4.481
+                                    s1.067,3.693,2.797,4.542l91.833,45.068c1.684,0.827,3.692,0.64,5.196-0.484l89.287-66.734l-70.094,72.1
+                                    c-1,1.029-1.51,2.438-1.4,3.868l6.979,90.889c0.155,2.014,1.505,3.736,3.424,4.367c0.513,0.168,1.04,0.25,1.561,0.25
+                                    c1.429,0,2.819-0.613,3.786-1.733l48.742-56.482l60.255,28.79c1.308,0.625,2.822,0.651,4.151,0.073
+                                    c1.329-0.579,2.341-1.705,2.775-3.087L334.27,18.956C334.864,17.066,334.285,15.005,332.797,13.699z"> </path></svg> <!-- {{ 'SENDAMESSAGE' | translate }} --> </button> </span> </div> </div> <div class="poweredtext">powered by <a href="https://hubs.la/Q01rdH5_0" target="_blank">Aunoa</a></div> </div> </div> </div> <div class="floating-chat browser ng-scope enter" id="webBrowser" style="background: rgb(211, 57, 113); display: none;"> <div class="chat" style="display: none;"> <div class="header"> <span class="title">&nbsp;</span> <button class="plugin-button"> <i class="fa fa-times" aria-hidden="true"></i> </button> </div> <div class="small-chat-box ng-small-chat messagdes" id="minichat" ng-mousedown="mouseDown($event)"> <iframe id="webiframe" style="border:0; width: 100%;height:100%" src="./saved_resource.html"></iframe> </div> </div> </div> <style class="ng-scope">.marginbottom{
+        margin-bottom: 5px;
+    }
+@import "https://fonts.googleapis.com/css?family=Noto+Sans";
+#connecting{
+    position: fixed; 
+    bottom: 50px;
+    width: 50%; 
+    margin: 5% auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--main-color);
+}
+body{
+    background-color: transparent;
+}
+#texttochat, .chat-message__text_plain, .btn{
+    /*font-family: apple color emoji, sogoe ui emoji, Segoe UI Symbol, noto color emoji, android emoji, emojisymbols, emojione mozilla, twemoji mozilla, sogoe ui symbol, open sans, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+}
+#openbtn{
+  font-size: 35px;
+  image-rendering: -webkit-optimize-contrast;
+}
+.floating-chat {
+  background: var(--main-color);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  max-width: 100px;
+  max-height: 100px;
+  transform: translateY(70px);
+  transition: all 250ms ease-out;
+  border-radius: 50%;
+  opacity: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.floating-chat.enter:hover {
+  /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);*/
+  opacity: 1;
+}
+.floating-chat.enter {
+  transform: translateY(0);
+  opacity: 0.6;
+  /*box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.14);*/
+  display: flex;
+}
+.floating-chat.expand {
+  width: 410px;
+  max-width: 410px;
+  max-height: 720px;
+  height: 720px;
+  border-radius: 5px;
+  cursor: auto;
+  opacity: 1;
+}
+.floating-chat .plugin-button {
+  background: transparent;
+  border: 0;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 3px;
+  cursor: pointer;
+  /*float: right;*/
+  position: fixed;
+  right:0;
+  margin-right: 20px;
+  top: 11px;
+}
+.floating-chat .plugin-button:hover {
+    color: red;
+}
+.floating-chat .chat {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  transition: all 250ms ease-out;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 18px;
+  margin-top: 5px;
+}
+.floating-chat .chat.enter {
+  opacity: 1;
+  border-radius: 0;
+  margin: 1px;
+  margin-top: 13px;
+  width: auto;
+  height: auto;
+}
+.floating-chat .chat .header {
+  flex-shrink: 0;
+  padding-top: 18px;
+  padding-left: 5px;
+  /*display: flex;*/
+  background: transparent;
+  position: fixed;
+  height: calc(100vh);
+  width: 100%;
+  bottom: 0;
+}
+.floating-chat .chat .header .title {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 0 5px;
+}
+.floating-chat .chat .header button {
+  flex-shrink: 0;
+}</style> <style class="ng-binding ng-scope">:root {
+        --main-color: #d33971; 
+    }
+    /* container inner */
+    .slimScrollDiv{
+        height: 100% !important;
+    }
+    /* contenedor */
+    .small-chat-box{
+        height: -webkit-calc(100vh - 58px) !important;
+        height:calc(100vh - 58px) !important;
+        height:-moz-calc(100vh - 58px) !important;
+        width: 100%;
+        bottom: 0;
+        right: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: transparent;
+        border: 0;
+
+    }
+    .small-chat-box .content {
+        padding: 15px 15px 5px 15px;
+        /*height: 100% !important;*/
+        background-color: #eee;
+        border: 1px;
+        height: -webkit-calc(100vh - 113px) !important;
+        height: calc(100vh - 113px) !important;
+        height:-moz-calc(100vh - 113px) !important;
+        border-left: 1px solid var(--main-color);
+        border-right: 1px solid var(--main-color)
+    }
+    /* ----------- chat ------------ */
+    .small-chat-box .content .chat-message {
+        position: relative;
+        max-width: 85%;
+        margin-bottom: 5px;
+	    padding: 10px 20px;
+        border-radius: 20px 20px 0px 20px;
+        background: #ddd;
+        opacity: 0;
+        -moz-opacity: 0;
+        filter:alpha(opacity=0);
+        -webkit-animation-name: msgGo; 
+        -webkit-animation-duration: 0.3s;
+        -webkit-animation-timing-function: ease-in-out;
+        -webkit-animation-fill-mode: forwards;
+        -webkit-animation-delay: .2s;
+
+
+        animation-name: msgGo;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-delay: .2s;
+
+        }
+    /* Safari 4.0 - 8.0 */
+    @-webkit-keyframes msgGo {
+        from {
+            opacity: 0;
+            -moz-opacity: 0;
+            filter:alpha(opacity=0);
+            transform: translate(0px, 10px);
+        }
+        to {
+            opacity: 1;
+            -moz-opacity: 1;
+            filter:alpha(opacity=1);
+            transform: translate(0px, 0px);
+        }
+    }
+
+    /* Standard syntax */
+    @keyframes msgGo {
+        from {
+            opacity: 0;
+            -moz-opacity: 0;
+            filter:alpha(opacity=0);
+            transform: translate(0px, 10px);
+        }
+        to {
+            opacity: 1;
+            -moz-opacity: 1;
+            filter:alpha(opacity=1);
+            transform: translate(0px, 0px);
+        }
+    }
+    .small-chat-box .content .chat-message::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        background-color: transparent;
+        box-shadow: inset -2px -2px #000;
+    }
+    .small-chat-box .content .chat-message.active {
+        background: #fff;
+        color: #000;
+        font-size: 16px;
+        border-radius: 20px 20px 20px 0px;
+        overflow: hidden;
+    }
+    .small-chat-box .content .chat-message.active::after {
+        bottom: 0px;
+        left: 0px;
+        box-shadow: none;
+    }
+    .small-chat-box .content .chat-message.active.chat-message--corner::after {
+        box-shadow: inset 2px -2px var(--main-color);
+    }
+    .small-chat-box .content .chat-message.active img.message__image {
+        margin: -10px -20px -10px -20px;
+        width: calc(100% + 40px) !important;
+    }
+
+    .small-chat-box .content .ng-scope.right + .ng-scope.left,
+    .small-chat-box .content .ng-scope.left + .ng-scope.right {
+        padding-top: 5px;
+    }
+    .small-chat-box .content .ng-scope.right:after, .small-chat-box .content .ng-scope.left:after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+    .small-chat-box .content .ng-scope.left {
+	    position: relative;
+	    padding-left: 45px;
+    }
+    .small-chat-box .content>div {
+	    padding-bottom: 0px;
+    }
+    
+    .img_bot_face{
+        width: 40px;
+        height: 40px;
+        background: red;
+        border-radius: 50px;
+        clear: both;
+        box-shadow: inset 0 0 0px 1px rgba(0,0,0,.15);
+        background: #fff url(https://cdn.aunoa.ai/411/icons/avatar_bot.jpg) center/cover no-repeat;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        margin-bottom: 3px;
+    }
+    .img_human_face{
+        width: 40px;
+        height: 40px;
+        background: red;
+        border-radius: 50px;
+        clear: both;
+        box-shadow: inset 0 0 0px 1px rgba(0,0,0,.15);
+        background: #fff url(https://cdn.aunoa.ai/411/icons/avatar_human.png) center/cover no-repeat;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        margin-bottom: 3px;
+    }
+    /* ----------- chat message ------------ */
+    .chat_slider__title,
+    .chat-message__title{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2em;
+        color: #000;
+        white-space: pre-line;
+        margin-top: 15px;
+    }
+    .chat_slider__title{
+        margin-top: 0px !important;
+    }
+    .chat_slider__subtitle,
+    .chat-message__subtitle{
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.2em;
+        color: #999;
+        white-space: pre-line;
+        margin-top: 5px;
+    }
+    .chat_slider__text,
+    .chat-message__text_plain{
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.2em;
+        color: #000;
+        white-space: pre-line;
+        overflow-wrap: break-word;
+    }
+
+    .chat-message__text{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.2em;
+        color: #000;
+        white-space: pre-line;
+    }
+    .chat_slider__content{
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.2em;
+        color: #000;
+    }
+    .chat-message__image{}
+    .chat-message_img_typing_dots{
+        width: 45px;
+        height: 25px;
+        clear: both;
+        background: #eee url('img/typing_dots.gif') center/cover no-repeat;
+    }
+    /* ----------- btn pre ------------ */
+    .chat-quicks {
+        clear: both;
+        /*
+        position: absolute;
+        bottom: 55px;
+        width: 100%;
+        background-color: rgba(0,0,0,.03);
+        box-shadow: inset 0 1px 1px 0px rgba(0,0,0,.1);
+        
+        text-align: right;
+        */
+        margin: 0 -15px;
+        padding: 5px 15px 0 15px;
+        z-index: 999;
+        opacity: 0;
+        -moz-opacity: 0;
+        filter:alpha(opacity=0);
+
+        -webkit-animation-name: msgGo; 
+        -webkit-animation-duration: 0.3s;
+        -webkit-animation-timing-function: ease-in-out;
+        -webkit-animation-fill-mode: forwards;
+        -webkit-animation-delay: .3s;
+
+
+        animation-name: msgGo;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-delay: .3s;
+    }
+    .chat-quicks__item{
+        display: inline-block;
+        margin: 0 5px 5px 0;
+    }
+    .quick-btn{
+        padding: 10px;
+        border-radius: 50px;
+        background-color: var(--main-color);
+        color: #fff;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        line-height: 1.2em;
+        padding: 6px !important;
+    }
+    .quick-btn.focus,
+    .quick-btn:focus,
+    .quick-btn:hover {
+        background-color: var(--main-color);
+        color: #fff;
+        filter: brightness(95%);
+    }
+    /* ----------- btn card ------------ */
+    .btn {
+        display: inline-block;
+        padding: 10px;
+        margin-bottom: 0;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+        border-radius: 50px;
+    }
+    .btn__card-btn {
+        display: block;
+        margin: 5px 0;
+    }
+    .card-btn {
+        background-color: #fff;
+        color: var(--main-color);
+        width: 100%;
+        border: 1px solid var(--main-color);
+        font-size: 14px;
+        font-weight: 599;
+    }
+    .card-btn.focus,
+    .card-btn:focus,
+    .card-btn:hover {
+        background-color: #fff;
+        color: var(--main-color);
+        filter: brightness(95%);
+    }
+    /* ----------- carousel ------------ */
+    .chat_slider{
+        width: 100%;
+    }
+    .chat_slider__content{
+        width: 100%;
+        text-align: center;
+        margin: 0 0 10px 0;
+    }
+    .carousel-control {
+        color: var(--main-color);
+        opacity: 1;
+        background-color: #fff;
+        width: 25px;
+        height: 25px;
+        border-radius: 50px;
+        box-shadow: 0 3px 3px rgba(0,0,0,.3);
+        position: absolute;
+        top: 50%;
+        background-image: none !important;
+
+    }
+    .carousel-control:hover,
+    .carousel-control:focus {
+        color: var(--main-color);
+        filter: brightness(90%);
+        opacity:1;
+    }
+    .carousel-control.left{left: -15px;}
+    .carousel-control.right {right: -15px;}
+    .carousel-control .glyphicon-chevron-left,
+    .carousel-control .glyphicon-chevron-right {
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        font-size: 18px;
+        position: relative;
+        top: 0;
+        margin: 0;
+        text-shadow: none;
+        text-align: center;
+        padding: 3px 0;
+    }
+    .carousel-indicators{
+        bottom:-40px;
+    }
+    .progress-bar-chat {
+        background-color: var(--main-color);
+    }
+    .carousel-indicators li {
+        background-color: #ddd;
+        width: 8px;
+        height: 8px;
+        margin: 2px;
+        border:none;
+    }
+    .carousel-indicators .active {
+        background-color: var(--main-color);
+        width: 8px;
+        height: 8px;
+        margin: 2px;
+        border:none;
+    }
+    .carousel-inner {
+    padding: 0;
+    margin: -10px -20px;
+    width: calc(100% + 40px);
+    }
+    .carousel-inner .chat_slider__title, .carousel-inner .chat_slider__subtitle{
+        padding: 0 35px;
+    }
+    .carousel-inner .btn__card-btn {
+        margin-top: auto;
+        margin-left: 35px;
+        margin-right: 35px;
+        bottom: 0px;
+        padding: 10px 0;
+    }
+    .item .wraper{
+    display: flex !important;
+    flex-flow: column nowrap !important;
+    flex-grow: 1;
+    }
+    /* ----------- form ----------- */
+    .small-chat-box .form-chat{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        padding: 5px 10px;
+        background-color: #fff;
+        box-shadow: 0 0px 20px -5px rgba(0,0,0,.2);
+        z-index: 99;
+        border-left: 1px solid var(--main-color);
+        border-right: 1px solid var(--main-color);
+        border-bottom: 1px solid var(--main-color);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    .form-chat .form-control:focus,
+    .form-chat .single-line:focus,
+    .form-chat .form-control,
+    .form-chat .single-line {
+        border:none;
+    }
+    .form-chat .input-group-sm>.form-control,
+    .form-chat .input-group-sm>.input-group-addon,
+    .form-chat .input-group-sm>.input-group-btn>.btn {
+        height: 45px;
+        padding: 0px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        font-size: 16px;
+        color: #888888;
+    }
+    .btn.btn-default.sendbtn {
+        background-color: transparent;
+        border:none;
+        width: 45px;
+        padding: 0;
+        text-align: center;
+        border-radius: 50px !important;
+        font-size: 24px !important;
+        
+    }
+    .btn.btn-default.sendbtn:hover,
+    .btn.btn-default.sendbtn:focus {
+        background-color: rgba(0,0,0,.1);
+    }
+    .sendbtn .sendbtn__ico{
+        height: 25px;
+        fill: var(--main-color);
+        margin: 10px 0;
+    }
+    /*attach*/
+    .attach{
+        position: absolute;
+        right: 50px;
+        top: 0px;
+        font-size: 26px;
+        z-index: 100;
+        opacity: 0.7;
+        color: black;
+        border-radius: 50px;
+        padding: 9px 15px;
+    }
+    .attach:hover{
+        background-color: rgba(0,0,0,.1);
+    }
+    .attach:hover{
+        opacity: 1;
+    }
+    .browser{
+        right: 410px;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+    .browser .small-chat-box.ng-small-chat{
+        border-left: 1px solid var(--main-color);
+        border-bottom: 1px solid var(--main-color);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 0px;
+    }
+    .withbrowser{
+        border-top-left-radius: 0px !important;
+    }
+    .withbrowser .small-chat-box .form-chat{
+        border-bottom-left-radius: 0px !important;
+    }
+    .pending{
+        font-size: 18px;
+    position: fixed;
+    top: 25px;
+    right: 20px;
+    }
+    .chatwindowhide{
+        display: none !important;
+    }
+    div.chat-message__image + div.chat-message__text_plain {
+        margin-top: 15px;
+    }
+    button.plugin-button:focus {
+        outline: none;
+    }
+    span.title img {
+        max-height: 25px;
+        max-width: 150px;
+    }
+    .poweredtext {
+        display: none;
+    }
+    .poweredtext a{
+        color: white;
+        text-decoration: underline;
+    }
+    .powered .poweredtext{
+        font-size: x-small;
+        position: absolute;
+        bottom: 0;
+        text-align: right;
+        width: 100%;
+        padding: 5px;
+        display: block;
+    }
+    .powered .small-chat-box .form-chat {
+        bottom: 20px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .powered .small-chat-box .content {
+        height: -webkit-calc(100vh - 133px) !important;
+        height: calc(100vh - 133px) !important;
+        height: -moz-calc(100vh - 133px) !important;
+    }
+    .small-chat-box .content .internal .chat-message{
+        border: none;
+        border-radius: 0;
+        background: none;
+        margin: 0;
+        padding: 0;
+    }
+    .small-chat-box .content .internal .chat-message::after{
+        content: none;
+    }
+
+    .small-chat-box .content .internal .chat-message{
+        max-width: 100%;
+    }
+    .internal .chat-message__text_plain {
+        text-align: center;
+        border-top: 1px solid #dddddd;
+        color: #868383;
+        /* border-bottom: 1px solid black; */
+        margin: 5px 0;
+    }
+    @media screen and (max-width: 720px) {
+        .mobile .floating-chat.expand {
+            width: 100%;
+            min-width: 100%;
+            min-height: 100%;
+            height: 100%;
+            border-radius: 0px;
+            cursor: auto;
+            opacity: 1;
+        }
+        .mobile .small-chat-box .form-chat {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+    }</style></div> <script type="text/javascript" src="./env.js.descarga"></script> <script src="./vendor.2fde5b95.js.descarga"></script> <script src="./scripts.2dc3eda7.js.descarga"></script>  </body></html>
